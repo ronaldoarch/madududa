@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - K18</title>
+</head>
+<body>
+    <h1>Debug dos Botões</h1>
+    
+    <button onclick="testFunction()">Teste Simples</button>
+    <button onclick="testCheckout()">Teste Checkout</button>
+    
+    <div id="debug"></div>
+
+    <script>
+        function testFunction() {
+            document.getElementById('debug').innerHTML = 'Função JavaScript funcionando!';
+        }
+        
+        function testCheckout() {
+            console.log('Teste de checkout iniciado');
+            if (typeof initiateCheckout === 'function') {
+                console.log('Função initiateCheckout encontrada');
+                initiateCheckout('k18-mask-single');
+            } else {
+                console.error('Função initiateCheckout NÃO encontrada');
+                document.getElementById('debug').innerHTML = 'ERRO: Função initiateCheckout não carregada';
+            }
+        }
+    </script>
+    
+    <script src="yampi-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

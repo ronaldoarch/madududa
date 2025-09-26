@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Simples - K18</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { 
+            background: #C3D600; 
+            color: white; 
+            border: none; 
+            padding: 15px 40px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin: 10px;
+            border-radius: 5px;
+        }
+        button:hover { background: #5CBD78; }
+        .debug { margin: 20px 0; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Teste Simples dos Botões K18</h1>
+    
+    <div class="debug" id="debug">
+        Aguardando teste...
+    </div>
+    
+    <button onclick="testDirect()">Teste Direto</button>
+    <button onclick="testCheckout('k18-mask-single')">Teste Checkout 1</button>
+    <button onclick="testCheckout('k18-kit-1')">Teste Checkout 2</button>
+    <button onclick="testCheckout('k18-kit-2')">Teste Checkout 3</button>
+    
+    <div id="loadingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px;">
+            <h3>Redirecionando para o checkout...</h3>
+            <p>Aguarde enquanto você é direcionado para finalizar sua compra.</p>
+        </div>
+    </div>
+
+    <script>
+        function testDirect() {
+            document.getElementById('debug').innerHTML = 'Teste direto funcionando!';
+            console.log('Teste direto executado');
+        }
+        
+        function testCheckout(productType) {
+            console.log('testCheckout chamado com:', productType);
+            document.getElementById('debug').innerHTML = `Teste checkout para: ${productType}`;
+            
+            if (typeof initiateCheckout === 'function') {
+                console.log('Chamando initiateCheckout...');
+                initiateCheckout(productType);
+            } else {
+                console.error('initiateCheckout não está disponível');
+                document.getElementById('debug').innerHTML = 'ERRO: initiateCheckout não carregado';
+            }
+        }
+    </script>
+    
+    <script src="yampi-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
